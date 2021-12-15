@@ -1,7 +1,7 @@
 use serde_json;
 use std::fs;
 use std::fs::File;
-use serde_json::json;
+use serde_json::{json, Value};
 
 
 struct Human{
@@ -20,15 +20,10 @@ fn read_json_from_file(){
 }
 
 
-fn write_to_file() {
-    // info to write to json
-    let person = ("Victor", "Tsoy");
-
-    // write part
+fn write_to_file(record: Vec<Value>) {
     let path = "content/new.json";
     let mut file = File::create(path).expect("Unable to create file");
-    let res = json!({"name": person.0, "surname": person.1});
-    serde_json::to_writer(file, &res);
+    serde_json::to_writer(file, &record);
 }
 
 
@@ -37,7 +32,18 @@ fn main() {
     let guy1 = Human{name: "Phil".to_string(), surname: "Collins".to_string()};
     println!("Test name: {} {}", guy1.name, guy1.surname);
 
+    let mut guys = vec!();
+
+    let guy2 = ("Mark", "Twain");
+    let res2 = json!({"name": guy2.0, "surname": guy2.1});
+    guys.push(res2);
+
+    let guy3 = ("Tom", "Sawyer");
+    let res3 = json!({"name": guy3.0, "surname": guy3.1});
+    guys.push(res3);
+
     // func calls
     read_json_from_file();
-    write_to_file();
+    write_to_file(guys);
+
 }
