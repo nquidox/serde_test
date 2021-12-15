@@ -4,12 +4,6 @@ use std::fs::File;
 use serde_json::{json, Value};
 
 
-struct Human{
-    name: String,
-    surname: String
-}
-
-
 fn read_json_from_file(){
     let path = "content/info.json";
     let data = fs::read_to_string(path).expect("Unable to read info.json");
@@ -29,9 +23,6 @@ fn write_to_file(record: Vec<Value>) {
 
 fn main() {
     println!("JSON serde test");
-    let guy1 = Human{name: "Phil".to_string(), surname: "Collins".to_string()};
-    println!("Test name: {} {}", guy1.name, guy1.surname);
-
     let mut guys = vec!();
 
     let guy2 = ("Mark", "Twain");
