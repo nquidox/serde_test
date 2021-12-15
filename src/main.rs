@@ -33,7 +33,6 @@ fn main() {
     let res3 = json!({"name": guy3.0, "surname": guy3.1});
     guys.push(res3);
 
-    // func calls
     read_json_from_file();
     write_to_file(guys);
 
